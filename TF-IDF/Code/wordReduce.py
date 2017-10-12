@@ -1,6 +1,14 @@
 #!/usr/bin/env python
-# Revised by Parke Godfrey
-# 2017-09-11
+# Rami Abou-Nassar
+# Jonathan Azpur
+# First Reducer
+# Takes as input:
+#   (word,filename     1)
+#
+# Aggregates and outputs:
+#   (word,filename    tf(W,D))
+# tf(W,D) = #occurrences of W in D 
+# This is used as input for the second mapper
 
 import sys
 
