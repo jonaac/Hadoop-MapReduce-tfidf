@@ -1,6 +1,26 @@
 #!/usr/bin/env python
 # Rami Abou-Nassar
 # Jonathan Azpur
+# Secoond Reducer:
+# Input from second mapper (previous mapper):
+#   (word,filename,count    1)
+#
+# Outputs:
+#   (word,filename,count    dw)
+#
+# *********** Important****************************
+# count is the tf value (ie the # of occurences of W in D)
+# 
+# dw (currCount) in this case is simply outputing an increasing value as it printse ach line from the 
+# first occurence of the word, till a new occurence of word at which point dw gets reset and starts
+# incrementing again. 
+#
+# This is done to avoid using any storage and running into any memory issues and allows the map/reducer
+# to scale out. 
+#
+# The trick is in the final map step we simply will sort the keys ascending AMD VALUES DESCENDING
+# Since the values are descending we simply need the first occurrence of this dw value (ie the largest value)
+# which corresponds to all remaining dw values for the respective word. 
 
 import sys
 

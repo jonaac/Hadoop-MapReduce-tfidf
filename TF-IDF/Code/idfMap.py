@@ -1,7 +1,15 @@
 #!/usr/bin/env python
 # Rami Abou-Nassar
 # Jonathan Azpur
-# First Reducer
+# Second Mapper:
+# Input from wordReduce (previous reducer):
+#   (word,filename    tf(W,D))
+#   (Note tf(W,D) is simply count in the code)
+#
+# Outputs:
+#   (word,filename,count    1)
+#
+# This is used as input for the second reducer
 
 import sys
 import re
