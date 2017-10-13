@@ -3,21 +3,20 @@
 # Jonathan Azpur
 
 import sys
-import math
 
 currWord  = None
-currCount = 0
-word      = None
-currFile  = None
-dwcounter = 0
+currCount = 0     #represents dw value  
+
 # input comes from STDIN
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
 
-    # parse the input
-    word, fc = line.split('\t', 1)
-    file, count = fc.split(',', 1)
+    #parse the line into its different components
+    key, count = line.split('\t', 1)
+
+    #furhter parse value into seperate word, fileName and wordCount components
+    word, fileName, wordCount = key.split(',',2)
 
     # convert count (currently a string) to int
     try:
@@ -27,20 +26,23 @@ for line in sys.stdin:
         # so silently ignore this line
         continue
 
+    # parse the line which will be used as print output
+    parseLine = word + ',' + fileName + ',' + wordCount
+
+    #Start by setting the word and count
     if currWord == None:
         currWord = word
-        currFile = file
-        dwcounter += 1
-    elif currWord != word:
-        # ------- calculate IDF ---------- #
-        idf = math.log(float(20) / float(dwcounter))
-        # -------    print IDF  ---------- #
-        print('%s\t%s' % (currWord, idf))
-        currFile = file
-        currWord = word
-        dwcounter = 1
+        currCount = count
+        print(parseLine + '\t' + str(currCount))
+    # same word means it appeared in another book so we must increment the conuter which represents the dw value
+    elif currWord == word:
+        currCount += count
+        print(parseLine + '\t' + str(currCount))
     else:
-        dwcounter += 1
-
-idf = math.log(float(20) / float(dwcounter))
-print('%s\t%s' % (currWord, idf))
+        #set to new word
+        currWord = word
+        
+        #reset count
+        currCount = count
+        
+        print(parseLine + '\t' + str(currCount))

@@ -19,6 +19,6 @@ for line in sys.stdin:
 	word, filename = key.split(',', 1)
 
 	#print word [] doc, count to second reducer
-	print('%s\t%s' % (word, filename + ',' + count))
+	print('%s\t%s' % (word + ',' + fileName + ',' + count, 1))
 	
 	
