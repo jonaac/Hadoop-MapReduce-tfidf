@@ -37,7 +37,7 @@ tf-idf(W,D)=tf(W,D)⋅idf(W) s.t. tf(W,D)=<occurrences of W in D> ∧ idf(W)=ln(
 ⟨('Hello',doc5,tf) , 3⟩
 ⟨('Hello',doc8,tf) , 4⟩
 
-So I have now the tf for the word 'Hello' and the # books/documents each word appears in. This is done to avoid using any storage and running into any memory issues and allows the map/reducer to scale out. 
+So I have now the tf for each word and the # of books/documents each word appears in. This is done to avoid using any storage and running into any memory issues and allows the map/reducer to scale out. 
 
 ## Third Map-Reducer:
 <b>Input Mapper</b>:
