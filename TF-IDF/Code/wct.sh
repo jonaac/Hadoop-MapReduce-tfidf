@@ -12,10 +12,10 @@ bin/hadoop jar $STREAMINGJAR                        \
 
 printf "\nMAPPER-REDUCER #2\n\n"
 bin/hadoop jar $STREAMINGJAR                        \
-    -files   $WCDIR/mapper2.py,$WCDIR/reducer2.py 	\
-    -mapper  $WCDIR/mapper2.py						\
+    -files   $WCDIR/mapper2.py,$WCDIR/reducer2.py   \
+    -mapper  $WCDIR/mapper2.py                      \
     -reducer $WCDIR/reducer2.py                     \
-    -input   Output1/'*'							\
+    -input   Output1/'*'                            \
     -output  Output2
 
 
