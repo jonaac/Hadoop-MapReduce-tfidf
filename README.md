@@ -22,7 +22,8 @@ Outputs Reducer:
 ⟨(word, document,tf) , dw⟩ s.t. dw is the number 
 
 *********** Important****************************
-dw is a counter that will end up returning for each word the # of documents the word appears on. So let's say the word 'Hello' appears in doc1, doc2, doc5 and doc8. The second MapReduce will return:
+
+<b>dw</b> is a counter that will end up returning for each word the # of documents the word appears on. So let's say the word 'Hello' appears in doc1, doc2, doc5 and doc8. The second MapReduce will return:
 
 ⟨('Hello',doc1,tf) , 1⟩
 ⟨('Hello',doc2,tf) , 2⟩
