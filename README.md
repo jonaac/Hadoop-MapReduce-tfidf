@@ -5,23 +5,24 @@ TF-IDF: write a MapReduce job for Hadoop to find the tf-idf of words in twenty b
 tf-idf(W,D)=tf(W,D)⋅idf(W) s.t. tf(W,D)=<occurrences of W in D> ∧ idf(W)=ln(N/d(W))
 
 ## First Map-Reducer:
-Input: /Gutenberg directory in my HDFS with 20 books in .txt format
-Output: for each word in each document, ⟨(word, document) , tf-idf score⟩
+<b>Input</b>: 
+/Gutenberg directory in my HDFS with 20 books in .txt format
+
+<b>Output</b>: 
+⟨(word, document) , tf-idf score⟩
 
 ## Second Map-Reducer:
-Input Mapper:
+<b>Input Mapper</b>:
 ⟨(word, document) , tf⟩
 
-Outputs Mapper:
+<b>Outputs Mapper</b>:
 ⟨(word, document,tf) , 1⟩
 
-Input Reducer:
+<b>Input Reducer</b>:
 ⟨(word,document,tf) , 1⟩
 
-Outputs Reducer:
+<b>Outputs Reducer</b>:
 ⟨(word, document,tf) , dw⟩ s.t. dw is the number 
-
-*********** Important****************************
 
 <b>dw</b> is a counter that will end up returning for each word the # of documents the word appears on. So let's say the word 'Hello' appears in doc1, doc2, doc5 and doc8. The second MapReduce will return:
 
@@ -33,10 +34,10 @@ Outputs Reducer:
 So I have now the tf for the word 'Hello' and the # books/documents each word appears in. This is done to avoid using any storage and running into any memory issues and allows the map/reducer to scale out. 
 
 ## Third Map-Reducer:
-Input:
+<b>Input</b>:
 ⟨(word, document,tf) , dw⟩
 
-Outputs:
+<b>Outputs</b>:
 ⟨(word, document) , tf-idf⟩
 
 In the Final Map-Reduce the keys are sorted ascending, values are sorted descending The largest dw value corresponding to the first entry of each respective word corresponds to the dw value I need which I use as I print the output. Once again no storage is being used so I avoid any memory/buffer issues.
