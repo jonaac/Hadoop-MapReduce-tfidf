@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Rami Abou-Nassar
 # Jonathan Azpur
 # Frst mapper simply outputs (key \t 1) = (word,filename     1)
 # This is used as input for WordReduce which will aggregate and compute the # of occurences of W in D
