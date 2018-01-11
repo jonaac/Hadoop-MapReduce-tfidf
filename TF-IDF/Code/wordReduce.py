@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Rami Abou-Nassar
 # Jonathan Azpur
 # First Reducer
 # Takes as input:
