@@ -2,6 +2,8 @@
 
 I develop a MapReduce job for Hadoop to find the tf-idf of words in twenty books from The Project Gutenberg as text-file documents. 
 
+My goal is to develop an app that is capable of scaling to massive datasets (i.e. 10 million+ books).
+
 I will be using a Docker container image distribution of Apache Hadoop for this project, using Hadoop commands so I can copy files into (-put) and out of (get) HDFS, which I will need to run a MapReducer.
 
 ## Docker and Hadoop set up
