@@ -4,9 +4,9 @@ WCDIR=/home/tfidf/Code
 STREAMINGJAR=share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar
 
 bin/hadoop jar $STREAMINGJAR                        \
-    -files   $WCDIR/wordMap.py,$WCDIR/wordReduce.py \
-    -mapper  $WCDIR/wordMap.py                      \
-    -reducer $WCDIR/wordReduce.py                   \
+    -files   $WCDIR/mapper1.py,$WCDIR/reducer1.py \
+    -mapper  $WCDIR/mapper1.py                      \
+    -reducer $WCDIR/reducer1.py                   \
     -input   Gutenberg/'*'                          \
     -output  Output1
 
