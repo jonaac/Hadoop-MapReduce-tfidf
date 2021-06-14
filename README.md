@@ -14,6 +14,12 @@ I create a directory for my project:
 ```
 docker cp tfidf Hadoop:/home/tfidf
 ```
+I place the files I will be working with in Hadoop's HDFS filesystem:
+```
+cd /usr/local/hadoop
+bin/hadoop fs -put /home/tfidf/Gutenberg Gutenberg
+```
+I created a <a href="https://github.com/jonaac/Hadoop-MapReduce-tfidf/blob/master/TF-IDF/Code/wct.sh">bash script</a> to execute all my code in Hadoop.
 
 ## First Map-Reducer:
 <b>Input Mapper:</b>: 
