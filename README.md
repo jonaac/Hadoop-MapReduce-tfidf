@@ -1,10 +1,8 @@
 # TF-IDF with Docker, Hadoop, and MapReduce:
 
-I develop a MapReduce job for Hadoop to find the tf-idf of words in twenty books from The Project Gutenberg as text-file documents. 
+I develop a MapReduce job for Hadoop to find the <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> of words in twenty books from The Project Gutenberg as text-file documents. I will be using a Docker container with an image distribution of Apache Hadoop for this project.
 
-I will be using a Docker container image distribution of Apache Hadoop for this project, using Hadoop commands so I can copy files into (-put) and out of (get) HDFS, which I will need to run a MapReducer.
-
-My goal is to develop an app that is capable of scaling to massive datasets (i.e. 10 million+ books). In order to do so I have to avoid any unnecessary sotrage in cache by making it so the mappers and reducers only have to look at one key-value pair at a time to generate  each output.
+My goal is to develop an app that is capable of scaling to massive datasets (i.e. 10 million+ books). In order to do so, I have to avoid any unnecessary caching of key-value pairs by making it so the mappers and reducers only have to look at one key-value pair at a time to generate their outputs. Therefore, I need to get the # of docs each word appears on into the key-value stream so that it is available per word as needed.
 
 ## Docker and Hadoop set up
 
