@@ -22,6 +22,8 @@ bin/hadoop fs -put /home/tfidf/Gutenberg Gutenberg
 I created a <a href="https://github.com/jonaac/Hadoop-MapReduce-tfidf/blob/master/TF-IDF/Code/wct.sh">bash script</a> to execute all my code in Hadoop.
 
 ## First Map-Reducer:
+For the first Map-Reducer I calculate the tf value for each word in each document"
+```
 <b>Input Mapper:</b>: 
 /Gutenberg directory in my HDFS with 20 books in .txt format
 
@@ -33,6 +35,7 @@ I created a <a href="https://github.com/jonaac/Hadoop-MapReduce-tfidf/blob/maste
 
 <b>Output Reducer</b>: 
 ⟨(word, document) , tf score⟩
+```
 
 ## Second Map-Reducer:
 <b>Input Mapper</b>:
