@@ -48,10 +48,10 @@ Output Reducer: ⟨(word, document,tf) , dw⟩
 ```
 
 ## Third MapReduce process:
-For the third and last MapReduce process I calculate the tf-idf value. The mapper will pass the dw values, then the keys are sorted ascending, and the values are sorted descending. The largest dw value corresponds to the #docs value for each word that I need to calculate the tf-idf. Once again no storage is being used so I avoid any memory/buffer issues.
+For the third and last MapReduce process the input will have the keys are sorted ascending, and the values are sorted descending. The largest dw value corresponds to the #docs value for each word that I need to calculate the tf-idf. Once again no storage is being used so I avoid any memory/buffer issues.
 ```
-Input Mapper: ⟨(word, document,tf) , dw⟩ 
-Output Mapper: ⟨(word, document,tf) , dw⟩ -> (word, document,tf) is sorted ascending and (dw) is sorted descending
-Input Reducer: ⟨(word, document,tf) , #doc⟩
+Input Mapper: ⟨(word, document,tf) , dw⟩ -> (word, document,tf) is sorted ascending and (dw) is sorted descending
+Output Mapper: ⟨(word, document,tf) , #docs⟩
+Input Reducer: ⟨(word, document,tf) , #docs⟩
 Output Reducer: ⟨(word, document,tf) , tf-idf⟩
 ```
