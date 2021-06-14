@@ -6,7 +6,16 @@ I use the stream library in Hadoop.
 
 A Docker container image distribution of Apache Hadoop for the project, using Hadoop commands so I can copy files into (-put) and out of (get) HDFS, which I will need to run a MapReducer.
 
-tf-idf(W,D)=tf(W,D)⋅idf(W) s.t. tf(W,D)=<occurrences of W in D> ∧ idf(W)=ln(N/d(W))
+## Docker and Hadoop set up
+
+I install Docker and once that's done I install the Hadoop image sequenceiq/hadoop-docker:2.7.1:
+```
+docker run -it --name Hadoop sequenceiq/hadoop-docker:2.7.1 /etc/bootstrap.sh -bash
+```
+I create a directory for my project:
+```
+docker cp tfidf Hadoop:/home/tfidf
+```
 
 ## First Map-Reducer:
 <b>Input Mapper:</b>: 
