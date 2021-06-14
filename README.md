@@ -1,4 +1,4 @@
-# MapReduce Project:
+# TF-IDF with Docker, Hadoop, and MapReduce:
 
 I develop a MapReduce job for Hadoop to find the tf-idf of words in twenty books from The Project Gutenberg as text-file documents. 
 
