@@ -2,7 +2,7 @@
 
 I develop a MapReduce job for Hadoop to find the <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> of words in twenty books from The Project Gutenberg as text-file documents. I will be using a Docker container with an image distribution of Apache Hadoop for this project.
 
-My goal is to develop an app that is capable of scaling to massive datasets (i.e. 10 million+ books). In order to do so, I have to avoid any unnecessary caching of key-value pairs by making it so the mappers and reducers only have to look at one key-value pair at a time to generate their outputs. Therefore, I need to get the # of docs each word appears on into the key-value stream so that it is available per word as needed.
+My goal is to develop an app capable of scaling to massive datasets (for example, 10+ million books). To do so, I have to avoid any unnecessary caching of key-value pairs and have a solution where mappers and reducers only have to look at one key-value pair at a time to generate their outputs. Therefore, I need to get the #docs (# of docs each word appears on) into the key-value stream so that it is available per word as necessary.
 
 ## Docker and Hadoop set up
 
