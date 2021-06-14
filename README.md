@@ -21,55 +21,37 @@ bin/hadoop fs -put /home/tfidf/Gutenberg Gutenberg
 ```
 I created a <a href="https://github.com/jonaac/Hadoop-MapReduce-tfidf/blob/master/TF-IDF/Code/wct.sh">bash script</a> to execute all my code in Hadoop.
 
-## First Map-Reducer:
-For the first Map-Reducer I calculate the tf value for each word in each document"
+## First MapReduce process:
+For the first MapReducer I calculate the tf value for each word in each document"
 ```
-<b>Input Mapper:</b>: 
-/Gutenberg directory in my HDFS with 20 books in .txt format
-
-<b>Output Mapper:</b>: 
-⟨(word, document) , 1⟩
-
-<b>Input Reducer:</b>: 
-⟨(word, document) , 1⟩
-
-<b>Output Reducer</b>: 
-⟨(word, document) , tf score⟩
+Input Mapper: /Gutenberg files in .txt
+Output Mapper: ⟨(word, document) , 1⟩
+Input Reducer: ⟨(word, document) , 1⟩
+Output Reducer: ⟨(word, document) , tf⟩
 ```
 
-## Second Map-Reducer:
-<b>Input Mapper</b>:
-⟨(word, document) , tf⟩
+## Second MapReduce process:
+For the second MapReduce process I calculate a <b>dw</b> counter. <b>dw</b> is a counter whose last iteration for each word will be the # of documents the word appears on. So let's say the word 'Hello' appears in doc1, doc2, doc5 and doc8. The second MapReduce will return:
 
-<b>Output Mapper</b>:
-⟨(word, document,tf) , 1⟩
-
-<b>Input Reducer</b>:
-⟨(word,document,tf) , 1⟩
-
-<b>Output Reducer</b>:
-⟨(word, document,tf) , dw⟩ s.t. dw is the number 
-
-<b>dw</b> is a counter that will end up returning for each word the # of documents the word appears on. So let's say the word 'Hello' appears in doc1, doc2, doc5 and doc8. The second MapReduce will return:
-
-⟨('Hello',doc1,tf) , 1⟩
-⟨('Hello',doc2,tf) , 2⟩
-⟨('Hello',doc5,tf) , 3⟩
-⟨('Hello',doc8,tf) , 4⟩
+⟨('Hello',doc1,tf) , dw = 1⟩
+⟨('Hello',doc2,tf) , dw = 2⟩
+⟨('Hello',doc5,tf) , dw = 3⟩
+⟨('Hello',doc8,tf) , dw = 4⟩
 
 So I have now the tf for each word and the # of books/documents each word appears in. This is done to avoid using any storage and running into any memory issues and allows the map/reducer to scale out. 
 
-## Third Map-Reducer:
-<b>Input Mapper</b>:
-⟨(word, document,tf) , dw⟩ -> (word, document,tf) is sorted ascending and dw is sorted descending
+```
+Input Mapper: ⟨(word, document) , tf⟩
+Output Mapper: ⟨(word, document,tf) , 1⟩
+Input Reducer: ⟨(word,document,tf) , 1⟩
+Output Reducer: ⟨(word, document,tf) , dw⟩
+```
 
-<b>Output Mapper</b>:
-⟨(word, document,tf) , dw⟩
-
-<b>Input Reducer</b>:
-⟨(word, document,tf) , dw⟩
-
-<b>Output Reducer</b>:
-⟨(word, document) , tf-idf⟩
-
-In the Final Map-Reduce the keys are sorted ascending, values are sorted descending The largest dw value corresponding to the first entry of each respective word corresponds to the dw value I need which I use as I print the output. Once again no storage is being used so I avoid any memory/buffer issues.
+## Third MapReduce process:
+For the third and last MapReduce process I calculate the tf-idf value. The mapper will pass the dw values, then the keys are sorted ascending, and the values are sorted descending. The largest dw value corresponds to the #docs value for each word that I need to calculate the tf-idf. Once again no storage is being used so I avoid any memory/buffer issues.
+```
+Input Mapper: ⟨(word, document,tf) , dw⟩ 
+Output Mapper: ⟨(word, document,tf) , dw⟩ -> (word, document,tf) is sorted ascending and (dw) is sorted descending
+Input Reducer: ⟨(word, document,tf) , #doc⟩
+Output Reducer: ⟨(word, document,tf) , tf-idf⟩
+```
