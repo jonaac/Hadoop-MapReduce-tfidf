@@ -9,8 +9,8 @@ import os
 
 # input comes from STDIN (standard input)
 for line in sys.stdin:
-	# get the file name of the book
-	fName = os.environ['mapreduce_map_input_file']
+    # get the file name of the book
+    fName = os.environ['mapreduce_map_input_file']
 
     # remove leading and trailing whitespace
     line = line.strip()
