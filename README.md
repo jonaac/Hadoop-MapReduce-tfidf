@@ -34,7 +34,7 @@ I created a <a href="https://github.com/jonaac/Hadoop-MapReduce-tfidf/blob/maste
 ⟨(word, document) , 1⟩
 
 <b>Output Reducer</b>: 
-⟨(word, document) , tf-idf score⟩
+⟨(word, document) , tf score⟩
 
 ## Second Map-Reducer:
 <b>Input Mapper</b>:
